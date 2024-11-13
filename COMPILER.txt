@@ -1,0 +1,58 @@
+
+
+name = input("what is your name?: ")
+
+age = input("how old are you?: ")
+
+print(f"hello {name}!")
+
+print("HAPPY BIRTHDAY")
+
+print(f"you are {age} years old !")
+
+
+
+
+length = float(input("enter the length: "))
+width = float(input("enter the width: "))
+
+area = length * width
+
+print(f"the area is: {area}cm")
+
+
+
+
+
+
+
+item = input("what item would you like to buy?: ")
+
+price = float(input("what is the price?: "))
+quatity = int(input("how many would you like?: "))
+
+total = price * quatity
+
+print(f"you have bought {item} x {quatity}/s")
+
+print(f"your total is: {total}")
+
+
+
+
+adjective1 = input("enter an adjective (description): ")
+noun1 = input("enter a noun (person, place, thing): ")
+
+adjective2 = input("enter an adjective (description): ")
+
+
+verb1 = input("enter a verb ending with 'ing' ")
+
+adjective3 = input("enter an adjective (description): ")
+
+print(f"today i saw a {adjective1} person at the zoo.")
+
+print(f"in an exhibit, i saw a {noun1}")
+
+print(f"{noun1} was {adjective2} and {verb1}")
+print(f"i was {adjective3}!")

@@ -1,0 +1,482 @@
+import time
+
+my_time = int(input("enter the time in seconds:"))
+
+for x in range(my_time, 0, -1):
+   
+   seconds = x % 60
+
+   print(f"00:00:{seconds}")
+   
+   time.sleep(1)
+
+print("Time is up")
+
+
+
+
+
+
+
+
+
+#for counting down in seconds backwards
+import time
+
+my_time = int(input("enter the time in seconds:"))
+
+for x in range(my_time, 0, -1):
+   
+   print(x)
+   time.sleep(1)
+
+print("Time is up")
+
+
+
+
+
+
+
+
+#for counting down in seconds
+import time
+
+my_time = int(input("enter the time in seconds:"))
+
+for x in range(0, my_time):
+   
+   print(x)
+   time.sleep(1)
+
+print("Time is up")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# temp conversion
+
+
+unit = input("is the temp in celius or fahranheit (C/F): ")
+temp = float(input("enter the temp: "))
+
+if unit == "c":
+    temp = round((9 * temp)/ 5 + 32, 1)
+    print(f"the temp in fahranheit is : {temp}")
+
+elif unit == "F":
+    temp = round((temp - 32)* 5/9, 1)
+    print(f"the temp in celsius is: {temp}")
+
+else:
+    print(f"{unit} is not a valid vaule measurement")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# tkinter and time modules are inbuilt
+from tkinter import *
+import time
+
+
+def run():
+    global root
+    root = Tk()
+    root.title("Stopwatch APP")
+    width = 400
+    height = 160
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    x = (screen_width / 2) - (width / 2)
+    y = (screen_height / 2) - (height / 2)
+    root.geometry("%dx%d+%d+%d" % (width, height, x, y))
+    Top = Frame(root)
+    Top.pack(side=TOP)
+    stopWatch = StopWatch(root)
+    stopWatch.pack(side=TOP, pady=15)
+    Bottom = Frame(root, width=400)
+    Bottom.pack(side=BOTTOM)
+    Start = Button(Bottom, text='move', command=stopWatch.Start,
+                   width=20, height=2, bg="purple")
+    Start.pack(side=LEFT)
+    Stop = Button(Bottom, text='Stop', command=stopWatch.Stop,
+                  width=20, height=2, bg="red")
+    Stop.pack(side=LEFT)
+    Reset = Button(Bottom, text='Reset',
+                   command=stopWatch.Reset, width=15, height=2)
+    Reset.pack(side=LEFT)
+    root.config(bg="black")
+    root.mainloop()
+
+
+class StopWatch(Frame):
+    def __init__(self, parent=None, **kw):
+        '''When object is initialized'''
+        Frame.__init__(self, parent, kw)
+        self.startTime = 0.0
+        self.nextTime = 0.0
+        self.onRunning = 0
+        self.timestr = StringVar()
+        self.MakeWidget()
+
+    def Updater(self):
+        '''update the time shown'''
+        self.nextTime = time.time() - self.startTime
+        self.SetTime(self.nextTime)
+        self.timer = self.after(1, self.Updater)
+
+    def MakeWidget(self):
+        '''make widget for displaying time'''
+        timeText = Label(self, textvariable=self.timestr, font=(
+            "callibri", 50), fg="yellow", bg="grey")
+        self.SetTime(self.nextTime)
+        timeText.pack(fill=X, expand=NO, pady=2, padx=2)
+
+    def SetTime(self, nextElap):
+        '''set time that is to be displayed'''
+        mins = int(nextElap / 60)
+        secs = int(nextElap - mins * 60.0)
+        milisecs = int((nextElap - mins * 60.0 - secs) * 100)
+        self.timestr.set('%02d:%02d:%02d' % (mins, secs, milisecs))
+
+    def Start(self):
+        '''start stopwatch'''
+        if not self.onRunning:
+            self.startTime = time.time() - self.nextTime
+            self.Updater()
+            self.onRunning = 1
+        
+
+    def Stop(self):
+        '''stop stopwatch'''
+        if self.onRunning:
+            self.after_cancel(self.timer)
+            self.nextTime = time.time() - self.startTime
+            self.SetTime(self.nextTime)
+            self.onRunning = 0
+    
+
+    def Reset(self):
+        '''reset stopwatch'''
+        self.startTime = time.time()
+        self.nextTime = 0.0
+        self.SetTime(self.nextTime)
+
+
+if __name__ == '__main__':
+    run()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jul  6 23:26:25 2020
+
+@author: Avinash Ranjan
+"""
+
+import re
+
+print("Magical Calculator")
+print("Type 'quit' to exit\n")
+
+previous = 0
+run = True
+
+
+def performMath():
+    global run
+    global previous
+    equation = ""
+    if previous == 0:
+        equation = input("Enter Equation:")
+    else:
+        equation = input(str(previous))
+
+    if equation == 'quit':
+        print("GoodBye, Human..!")
+        run = False
+
+    else:
+        equation = re.sub('[a-zA-Z,:()"{}"]', '', equation)
+
+        if previous == 0:
+            previous = eval(equation)
+        else:
+            previous = eval(str(equation) + equation)
+
+
+while run:
+    performMath()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+python codesimport sys
+
+
+class Definations:
+    '''Contains the actual logic for base conversion.
+
+    Parent class to Converter class
+    '''
+
+    def __init__(self, number):
+        self.number = number
+
+    def Decimal_to_Binary(self):
+        return bin(int(self.number))[2:]
+
+    def Binary_to_Decimal(self):
+        return int(str(self.number), 2)
+
+    def Decimal_to_Octal(self):
+        return oct(int(self.number))[2:]
+
+    def Octal_to_Decimal(self):
+        return int(str(self.number), 8)
+
+    def Decimal_to_Hexadecimal(self):
+        return hex(self.number)[2:]
+
+    def Hexadecimal_to_Decimal(self):
+        return int(str(self.number), 16)
+
+    def Hexadecimal_to_Binary(self):
+        num = int(str(self.number), 16)
+        return bin(num)[2:]
+
+    def Hexadecimal_to_Octal(self):
+        num = int(str(self.number), 16)
+        return oct(num)[2:]
+
+    def Binary_to_Octal(self):
+        num = int(str(self.number), 2)
+        return oct(num)[2:]
+
+    def Binary_to_Hexadecimal(self):
+        num = int(str(self.number), 2)
+        return hex(num)[2:]
+
+    def Octal_to_Hexadecimal(self):
+        num = int(str(self.number), 8)
+        return hex(num)[2:]
+
+    def Octal_to_Binary(self):
+        num = int(str(self.number), 8)
+        return bin(num)[2:]
+
+
+class Converter(Definations):
+    '''Inherits the Definations Class and converts the number based on user input'''
+
+    def __init__(self, number):
+        super().__init__(number)
+
+    def helper(self, func_name):
+        return getattr(Definations, func_name)(self)
+
+    def convert(self, FROM="d", TO="b"):
+        '''
+        By Default conversion takes place from decimal to binary.
+        specify the FROM and TO parameters from the following:
+        d-decimal,
+        b-binary,
+        x-hexadecimal,
+        o-octal
+        '''
+        bases = {'d': "Decimal", 'b': "Binary",
+                 'x': 'Hexadecimal', 'o': "Octal"}
+        to_call_function = bases[FROM] + '_to_' + bases[TO]
+        return f"\n{self.number} in {bases[FROM]} = {self.helper(to_call_function)} in {bases[TO]}"
+
+
+def header_decoration():
+    print('''
+    -------------- WELCOME TO NUMBER CONVERTER --------------
+    -------------- --------------------------- --------------
+    ''')
+
+
+def footer_decoration():
+    print('''
+    -------------- --------------------------- -----------
+    ''')
+
+
+if __name__ == '__main__':
+    header_decoration()
+    Num = Converter(input("Enter number = "))
+    print(Num.convert(input("From = "), input("To = ")))
+    footer_decoration()
